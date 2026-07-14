@@ -1,0 +1,152 @@
+/* 1. Master Container Structure */
+.ibaw-hero-container {
+    --left-col: 40%;
+    --right-col: 25%;
+    
+    display: grid;
+    grid-template-columns: var(--left-col) auto var(--right-col);
+    min-height: 700px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 2. Column Styles */
+.ibaw-hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    color: #ffffff;
+}
+
+.ibaw-brand-logo {
+    max-width: 250px;
+    margin-bottom: 30px;
+    height: auto;
+}
+
+.ibaw-hero-title {
+    font-size: 80px;
+    font-weight: 900;
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+    color: #ffffff;
+}
+
+.ibaw-hero-desc {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+}
+
+.ibaw-hero-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.ibaw-image-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.ibaw-hero-product-img {
+    max-width: 160%; 
+    margin-left: -30%;
+    height: auto;
+    filter: drop-shadow(-10px 20px 25px rgba(0,0,0,0.2));
+    transition: opacity 0.3s ease;
+}
+
+.ibaw-hero-right {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Removed vertical line logic */
+
+/* 3. Navigation Menu - Bullets forced off */
+.ibaw-hero-menu {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+}
+
+.ibaw-menu-li {
+    list-style: none !important;
+    margin-bottom: 5px;
+    position: relative;
+    padding: 0 !important;
+}
+
+/* 4. Navigation & Animations */
+.ibaw-nav-item {
+    --hover-x: 0px;
+    --hover-y: 0px;
+    --hover-scale: 1.5;
+    --transition-speed: 0.3s;
+
+    display: block;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 0 10px 30px;
+    opacity: 0.7;
+    
+    /* Animation definition */
+    transform-origin: left center;
+    transform: translate(0, 0) scale(1);
+    transition: transform var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1), 
+                background-color var(--transition-speed) ease, 
+                opacity var(--transition-speed) ease;
+}
+
+/* Hover & Active States */
+.ibaw-nav-item:hover,
+.ibaw-nav-item.ibaw-active {
+    opacity: 1;
+    transform: translate(var(--hover-x), var(--hover-y)) scale(var(--hover-scale));
+}
+
+/* 5. Mobile Responsiveness */
+@media (max-width: 1200px) {
+    .ibaw-hero-container {
+        --left-col: 35%;
+        --right-col: 30%;
+    }
+    .ibaw-hero-product-img { max-width: 130%; margin-left: -15%; }
+}
+
+@media (max-width: 992px) {
+    .ibaw-hero-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        text-align: center;
+    }
+
+    .ibaw-hero-left, .ibaw-hero-center, .ibaw-hero-right {
+        padding: 40px 20px;
+    }
+
+    .ibaw-hero-product-img {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .ibaw-nav-item {
+        display: inline-block;
+        padding: 10px 20px;
+        transform-origin: center center;
+    }
+}

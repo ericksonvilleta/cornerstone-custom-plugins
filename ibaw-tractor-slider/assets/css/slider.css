@@ -1,0 +1,277 @@
+:root {
+	--ibaw-primary-accent: #002244;
+	--ibaw-neutral-dark: #1e293b;
+	--ibaw-neutral-light: #f8fafc;
+	--ibaw-border-light: #e2e8f0;
+	--ibaw-slider-radius: 0px;
+}
+
+.ibaw-slider-component {
+	position: relative;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+	background: #ffffff;
+	border-radius: var(--ibaw-slider-radius);
+}
+
+/* Presentation Viewport Stage */
+.ibaw-viewport-window {
+	position: relative;
+	width: 100%;
+	height: 480px;
+	background: radial-gradient(circle, rgba(240,244,248,1) 0%, rgba(218,226,236,1) 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ibaw-background-watermark-text {
+	position: absolute;
+	top: 10%;
+	left: 5%;
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: -2px;
+	user-select: none;
+	pointer-events: none;
+	z-index: 1;
+	line-height: 1;
+}
+
+.ibaw-asset-stage {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.ibaw-foreground-product-image {
+	max-width: 85%;
+	max-height: 85%;
+	object-fit: contain;
+	filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+	transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	opacity: 0;
+	transform: scale(0.95);
+}
+
+.ibaw-foreground-product-image.is-visible {
+	opacity: 1;
+	transform: scale(1);
+}
+
+/* Metrics Spec Sheet Grid Layout Fix: 6 Columns Inline on One Row */
+.ibaw-metrics-spec-grid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	color: #ffffff;
+	align-items: stretch;
+}
+
+.ibaw-metric-cell {
+	padding: 24px 15px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+}
+
+/* Ensure all items align on the exact same row track */
+.ibaw-metric-cell:nth-child(1),
+.ibaw-metric-cell:nth-child(2),
+.ibaw-metric-cell:nth-child(3),
+.ibaw-metric-cell:nth-child(4),
+.ibaw-metric-cell:nth-child(5),
+.ibaw-metric-cell.ibaw-video-slot {
+	grid-row: 1;
+}
+
+.ibaw-metric-label {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 600;
+}
+
+.ibaw-metric-value-group {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.ibaw-metric-suffix {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+/* Video Thumbnail Action Controllers */
+.ibaw-metric-video-link {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	position: relative;
+	overflow: hidden;
+}
+
+.ibaw-video-thumbnail-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-height: 90px;
+}
+
+.ibaw-video-bg-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.3s ease;
+}
+
+.ibaw-video-overlay-play {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.3s ease;
+}
+
+.ibaw-play-icon-svg {
+	width: 38px;
+	height: 38px;
+	filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+	transition: transform 0.2s ease;
+}
+
+.ibaw-metric-video-link:hover .ibaw-video-bg-img {
+	transform: scale(1.04);
+}
+
+.ibaw-metric-video-link:hover .ibaw-play-icon-svg {
+	transform: scale(1.1);
+}
+
+/* Navigation System Control Components */
+.ibaw-navigation-control-tray {
+	padding: 20px;
+	background: #ffffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ibaw-thumbnail-strips-wrapper {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	align-items: center;
+}
+
+.ibaw-nav-thumbnail-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 8px;
+	border-radius: 6px;
+	cursor: pointer;
+	width: 100px;
+	transition: all 0.2s ease-in-out;
+}
+
+.ibaw-nav-thumbnail-card img {
+	width: 100%;
+	height: 50px;
+	object-fit: contain;
+	opacity: 0.5;
+}
+
+.ibaw-thumbnail-label {
+	font-size: 12px;
+	font-weight: 700;
+	margin-top: 6px;
+}
+
+.ibaw-nav-thumbnail-card.is-active img {
+	opacity: 1;
+}
+
+.ibaw-dot-indicators-wrapper {
+	display: none;
+	gap: 10px;
+	padding: 10px 0;
+}
+
+.ibaw-nav-dot {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	transition: transform 0.2s, background-color 0.2s;
+}
+
+.ibaw-nav-dot.is-active {
+	transform: scale(1.2);
+}
+
+/* Mobile Breakpoint Adaptability Configuration */
+@media (max-width: 991px) {
+	.ibaw-metrics-spec-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.ibaw-metric-cell:nth-child(1),
+	.ibaw-metric-cell:nth-child(2),
+	.ibaw-metric-cell:nth-child(3),
+	.ibaw-metric-cell:nth-child(4),
+	.ibaw-metric-cell:nth-child(5),
+	.ibaw-metric-cell.ibaw-video-slot {
+		grid-row: auto;
+	}
+}
+
+@media (max-width: 768px) {
+	.ibaw-viewport-window {
+		height: 320px;
+	}
+
+	.ibaw-metrics-spec-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.ibaw-metric-cell,
+	.ibaw-metric-cell:nth-child(1),
+	.ibaw-metric-cell:nth-child(2),
+	.ibaw-metric-cell:nth-child(3),
+	.ibaw-metric-cell:nth-child(4),
+	.ibaw-metric-cell:nth-child(5),
+	.ibaw-metric-cell.ibaw-video-slot {
+		grid-row: auto !important;
+		grid-column: auto !important;
+		padding: 16px;
+	}
+
+	.ibaw-video-thumbnail-container {
+		min-height: 84px;
+	}
+
+	.ibaw-thumbnail-strips-wrapper {
+		display: none;
+	}
+
+	.ibaw-dot-indicators-wrapper {
+		display: flex;
+	}
+}

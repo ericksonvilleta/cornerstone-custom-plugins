@@ -1,0 +1,67 @@
+.ibaw-glass-slider-wrapper {
+    font-family: sans-serif; 
+    color: #ffffff; 
+    width: 100%; 
+    padding: 60px 20px; 
+    box-sizing: border-box; 
+    overflow: hidden;
+    background-image: url('image_ac1272.jpg'); 
+    background-size: cover; 
+    background-position: center;
+}
+
+.ibaw-glass-header { text-align: center; max-width: 800px; margin: 0 auto 50px; }
+
+.ibaw-glass-track { 
+    display: flex; 
+    gap: 30px; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    padding: 40px 0; 
+}
+
+/* Precise frosted glass effect from image */
+.ibaw-glass-card {
+    flex: 0 0 350px; 
+    scroll-snap-align: center;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 16px; 
+    padding: 40px; 
+    transition: 0.4s;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Alternating rotation */
+.ibaw-glass-card:nth-child(3n+1) { transform: rotate(2deg) translateY(-10px); }
+.ibaw-glass-card:nth-child(3n+3) { transform: rotate(-2deg) translateY(10px); }
+
+/* Navigation buttons styling */
+.ibaw-glass-nav { 
+    display: flex; 
+    justify-content: flex-end; 
+    gap: 15px; 
+    margin-top: 20px; 
+    padding-right: 20px; 
+}
+
+.ibaw-glass-nav button { 
+    background: transparent; 
+    border: 1px solid rgba(255, 255, 255, 0.6); 
+    border-radius: 8px; 
+    width: 50px; 
+    height: 50px; 
+    cursor: pointer; 
+    color: #fff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ibaw-glass-nav button:hover { background: rgba(255,255,255,0.2); }
+
+@media (max-width: 768px) { 
+    .ibaw-glass-card { flex: 0 0 85vw; transform: none !important; } 
+}

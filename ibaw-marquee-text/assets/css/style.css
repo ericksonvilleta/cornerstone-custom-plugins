@@ -1,0 +1,77 @@
+/* Container constraints */
+.ibaw-marquee-wrapper {
+	overflow: hidden;
+	white-space: nowrap;
+	display: flex;
+	width: 100%;
+	box-sizing: border-box;
+	position: relative;
+}
+
+/* The animated track */
+.ibaw-marquee-track {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	will-change: transform;
+}
+
+/* Contains the list of items */
+.ibaw-marquee-content {
+	display: flex;
+	flex-shrink: 0;
+	justify-content: space-around;
+	min-width: 100%;
+}
+
+/* Individual wrappers for spacing */
+.ibaw-marquee-item-wrapper {
+	display: inline-flex;
+	align-items: center;
+}
+
+.ibaw-marquee-item {
+	display: inline-block;
+	transition: color 0.3s ease;
+}
+
+.ibaw-marquee-link {
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	transition: color 0.3s ease;
+}
+
+/* Directions */
+.ibaw-marquee-left {
+	animation: ibaw-marquee-scroll-left 20s linear infinite;
+}
+
+.ibaw-marquee-right {
+	animation: ibaw-marquee-scroll-right 20s linear infinite;
+}
+
+/* Hover control */
+.ibaw-pause-hover:hover {
+	animation-play-state: paused;
+}
+
+/* Keyframes for seamless looping */
+@keyframes ibaw-marquee-scroll-left {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		/* Moves exactly halfway (since the content is duplicated) */
+		transform: translateX(-50%); 
+	}
+}
+
+@keyframes ibaw-marquee-scroll-right {
+	0% {
+		transform: translateX(-50%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
