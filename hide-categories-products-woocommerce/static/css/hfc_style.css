@@ -1,0 +1,14 @@
+.hide-from-categories #mainform table.form-table tbody{
+  display: flex;
+  flex-wrap: wrap;
+}
+.hide-from-categories #mainform table.form-table tbody tr{
+  width: 25%;
+  display: flex;
+}
+.hide-from-categories #mainform table.form-table tbody th{
+  order:1;
+}
+#sticky{
+  padding: 0 0 0 40px;
+}
