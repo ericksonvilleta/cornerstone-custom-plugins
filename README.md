@@ -96,3 +96,44 @@ cornerstone-custom-plugins/
 ├── .gitignore                               # OS files, temporary logs, and secret exclusions
 └── README.md
 ```
+🛠️ Key Architectural Highlights
+1. Semi-Headless WooCommerce Architecture
+To maintain maximum site speed and precise control over the checkout funnel, these plugins bypass standard WooCommerce template hooks where appropriate. Custom cart handlers, state restriction rules, and automated shipping calculators process data via AJAX/REST API endpoints, feeding seamless UI components built on top of Elementor.
+
+2. Programmatic CPTs & Local ACF JSON
+Custom Post Types (such as Sheds, Tractors, Mowers, and Power Tools) are registered programmatically through individual plugin wrappers. Custom field groups are version-controlled via localized acf-json directories inside each plugin, ensuring field definitions sync automatically across local, staging, and production environments without manual exports.
+
+3. Performance Optimization
+Asset Loading: Custom Elementor widgets only enqueue JS/CSS assets when the widget is actively present on the page.
+
+Heartbeat & Caching: ibaw-throttle-heartbeat and ibaw-cls-browser-cache-buster lower server load on Cloudways and prevent stale assets from being served post-deployment.
+
+⚙️ Deployment Workflow
+This repository uses GitHub Actions for continuous integration and automated deployment to the Cloudways hosting server.
+
+Branch Strategy:
+
+main — Deploys directly to the live production server environment.
+
+staging — (Optional) Deploys to the Cloudways staging application.
+
+Automated SFTP: The .github/workflows/deploy.yml pipeline listens for pushes to main, isolates modified plugin files, and deploys them to /wp-content/plugins/ on the server.
+
+👨‍💻 Developer Guidelines
+When contributing or adding new plugins to this monorepo:
+
+Naming Convention: Prefix all plugin folders and main entry files with IBAW- or ibaw- (e.g., ibaw-new-feature/ibaw-new-feature.php).
+
+Plugin Header: Always include full author metadata in the main PHP file:
+
+PHP
+<?php
+/**
+ * Plugin Name: IBAW - Feature Name
+ * Plugin URI:  [https://ericksonvilleta.com](https://ericksonvilleta.com)
+ * Description: Custom functionality for Cornerstone Landscape Supply.
+ * Version:     1.0.0
+ * Author:      Erick Villeta
+ * Author URI:  [https://ericksonvilleta.com](https://ericksonvilleta.com)
+ */
+ACF JSON Sync: Ensure acf-json loading and saving paths are scoped locally to the specific plugin folder using the acf/settings/save_json and acf/settings/load_json hooks.
